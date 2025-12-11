@@ -14,7 +14,7 @@ def generate_invalid_ids_part1(start: int, end: int) -> list[int]:
             continue
         
         pattern_len = num_digits // 2
-        pattern_start = 10 ** (pattern_len - 1) if pattern_len > 1 else 1
+        pattern_start = 10 ** (pattern_len - 1)
         pattern_end = 10 ** pattern_len
         
         for pattern in range(pattern_start, pattern_end):
@@ -42,9 +42,9 @@ def generate_invalid_ids_part2(start: int, end: int) -> list[int]:
             if repeat_count < 2:
                 continue
             
-            pattern_start = 10 ** (pattern_len - 1) if pattern_len > 1 else 1
+            pattern_start = 10 ** (pattern_len - 1)
             pattern_end = 10 ** pattern_len
-            
+            print("size ", pattern_end - pattern_start)
             for pattern in range(pattern_start, pattern_end):
                 repeated_id = int(str(pattern) * repeat_count)
                 if start <= repeated_id <= end:
@@ -60,6 +60,7 @@ def solve(input_text: str, generator: Callable[[int, int], list[int]]) -> int:
         start, end = map(int, value.split('-'))
         total += sum(generator(start, end))
     return total
+
 
 if __name__ == "__main__":
     with open(".\\day_2\\input_day_2.txt", "r") as f:
